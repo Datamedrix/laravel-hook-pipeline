@@ -14,6 +14,7 @@ declare(strict_types=1);
 
 namespace DMX\Application\Pipeline;
 
+use DMX\Application\Pipeline\Contracts\DispatcherInterface;
 use Illuminate\Support\ServiceProvider as BaseServiceProvider;
 
 class ServiceProvider extends BaseServiceProvider
@@ -37,6 +38,8 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function register()
     {
+        $this->app->bind(DispatcherInterface::class, HookDispatcher::class);
+        $this->app->singleton(HookDispatcher::class);
     }
 
     /**
@@ -48,6 +51,9 @@ class ServiceProvider extends BaseServiceProvider
      */
     public function provides()
     {
-        return parent::provides();
+        return [
+            DispatcherInterface::class,
+            HookDispatcher::class,
+        ];
     }
 }

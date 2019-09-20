@@ -82,3 +82,5 @@ npm-debug.log
 yarn-error.log
 /build
 /test-reports
+.php_cs.cache
+.phpunit.result.cache
